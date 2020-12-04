@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HomeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">devops_machineinfo_spring_boot_app_jenkins</a> &gt; <a href="index.source.html" class="el_package">com.example.demo</a> &gt; <span class="el_source">HomeController.java</span></div><h1>HomeController.java</h1><pre class="source lang-java linenums">package com.example.demo;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+<span class="fc" id="L11">public class HomeController {</span>
+	
+	
+	@RequestMapping(&quot;home&quot;)
+	public  String home()
+
+	{
+<span class="nc" id="L18">		return &quot;home.jsp&quot;;</span>
+	}
+	@RequestMapping(&quot;machineinfo&quot;)
+	public ModelAndView   machineinfo()
+
+	{
+<span class="nc" id="L24">		InetAddress ip=null;</span>
+<span class="nc" id="L25">		String hostname=null;</span>
+<span class="nc" id="L26">		String os=null;</span>
+<span class="nc" id="L27">		String[] arrOfStr=null;</span>
+		try {
+<span class="nc" id="L29">			ip = InetAddress.getLocalHost();</span>
+<span class="nc" id="L30">			String p=ip.toString();</span>
+<span class="nc" id="L31">			arrOfStr = p.split(&quot;/&quot;, 2);</span>
+<span class="nc" id="L32">			hostname = ip.getHostName();</span>
+<span class="nc" id="L33">			os = System.getProperty(&quot;os.name&quot;);</span>
+			
+<span class="nc" id="L35">		} catch (UnknownHostException e) {</span>
+			// TODO Auto-generated catch block
+<span class="nc" id="L37">			e.printStackTrace();</span>
+<span class="nc" id="L38">		}</span>
+<span class="nc" id="L39">        ModelAndView mv=new ModelAndView(&quot;machineinfo.jsp&quot;);</span>
+<span class="nc" id="L40">        mv.addObject(&quot;ip&quot;,arrOfStr[1]);</span>
+<span class="nc" id="L41">        mv.addObject(&quot;hostname&quot;,hostname);</span>
+<span class="nc" id="L42">        mv.addObject(&quot;os&quot;,os);</span>
+<span class="nc" id="L43">		return mv;</span>
+        
+	}
+	public String getMessage(String name) {
+
+<span class="fc" id="L48">        StringBuilder result = new StringBuilder();</span>
+
+<span class="pc bpc" id="L50" title="2 of 4 branches missed.">        if (name == null || name.trim().length() == 0) {</span>
+
+<span class="nc" id="L52">            result.append(&quot;Please provide a name!&quot;);</span>
+
+        } else {
+
+<span class="fc" id="L56">            result.append(&quot;Hello &quot; + name);</span>
+
+        }
+<span class="fc" id="L59">        return result.toString();</span>
+    }
+	public long D2B(int n)
+	{
+<span class="fc" id="L63">		 long binaryNumber = 0;</span>
+<span class="fc" id="L64">	    int remainder, i = 1, step = 1;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">	    if(n==0)</span>
+	    {
+<span class="fc" id="L67">	    	return 0;</span>
+	    }
+<span class="fc bfc" id="L69" title="All 2 branches covered.">	    if(n&lt;0)</span>
+	    {
+<span class="fc" id="L71">	    	return 0;</span>
+	    }
+<span class="fc bfc" id="L73" title="All 2 branches covered.">	    while (n!=0)</span>
+	    {
+<span class="fc" id="L75">	        remainder = n%2;</span>
+	   //     printf(&quot;Step %d: %d/2, Remainder = %d, Quotient = %d\n&quot;, step++, n, remainder, n/2);
+<span class="fc" id="L77">	        n /= 2;</span>
+<span class="fc" id="L78">	        binaryNumber += remainder*i;</span>
+<span class="fc" id="L79">	        i *= 10;</span>
+	    }
+<span class="fc" id="L81">	    return binaryNumber;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
